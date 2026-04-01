@@ -61,7 +61,7 @@ export default function VideoSection() {
           {/* Video */}
           <video
             ref={videoRef}
-            src="/hero-video.mp4"
+            src="/video-section.mp4"
             autoPlay
             muted
             loop
