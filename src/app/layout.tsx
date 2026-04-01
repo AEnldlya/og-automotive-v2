@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Barlow_Condensed, Barlow } from "next/font/google";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -38,7 +41,10 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${barlowCondensed.variable} ${barlow.variable} scroll-smooth`}
     >
       <body className="bg-black text-cream antialiased">
-        {children}
+        <CustomCursor />
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

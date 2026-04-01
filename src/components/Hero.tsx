@@ -139,10 +139,10 @@ export default function Hero() {
 
         {/* CTA Row */}
         <div className="flex flex-col lg:flex-row items-start gap-4 lg:gap-6 mb-16 lg:mb-24">
-          <button className="hero-cta btn-primary">
+          <Link href="/contact" className="hero-cta btn-primary">
             Book a Service
-          </button>
-          <Link href="#services" className="hero-cta btn-ghost">
+          </Link>
+          <Link href="/services" className="hero-cta btn-ghost">
             Our Services
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={1.5} d="M9 5l7 7-7 7" />

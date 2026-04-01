@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-center">
           {/* Logo */}
           <div>
-            <Link href="#hero" className="flex items-center gap-1 group">
+            <Link href="/" className="flex items-center gap-1 group">
               <span className="text-base font-bebas font-bold tracking-wider text-white">OG</span>
               <span className="text-base font-bebas font-bold tracking-wider text-amber">AUTO</span>
             </Link>
@@ -25,9 +25,9 @@ export default function Footer() {
           {/* Links */}
           <div className="flex justify-end gap-8">
             {[
-              { label: 'About', href: '#about' },
-              { label: 'Services', href: '#services' },
-              { label: 'Contact', href: '#contact' },
+              { label: 'About', href: '/about' },
+              { label: 'Services', href: '/services' },
+              { label: 'Contact', href: '/contact' },
             ].map((link) => (
               <Link
                 key={link.href}
