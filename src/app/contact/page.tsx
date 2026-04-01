@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 import Contact from '@/components/Contact';
-import { GearModelClient, TextScrambleClient } from '@/components/ClientWrappers';
+import { TextScrambleClient } from '@/components/ClientWrappers';
 
 export const metadata: Metadata = {
   title: 'Contact O. G. Auto | Book a Service',
@@ -50,9 +50,8 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
             <Contact />
             <div className="hidden lg:flex flex-col gap-8">
-              <GearModelClient />
               {/* Google Maps Embed */}
-              <div className="w-full h-64 border border-border overflow-hidden">
+              <div className="w-full h-96 border border-border overflow-hidden">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2869.5!2d-72.3197!3d43.6489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDM4JzU2LjAiTiA3MsKwMTknMTAuOSJX!5e0!3m2!1sen!2sus!4v1"
                   width="100%"
