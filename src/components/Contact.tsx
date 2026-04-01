@@ -103,6 +103,7 @@ export default function Contact() {
                   <div className="text-xs font-barlow-condensed font-600 tracking-widest text-amber uppercase mb-2">
                     Address
                   </div>
+                  <p className="text-cream">160 Sykes Mountain Ave</p>
                   <p className="text-cream">White River Junction, VT 05001</p>
                 </div>
               </div>
