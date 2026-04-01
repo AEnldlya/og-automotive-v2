@@ -60,7 +60,7 @@ export default function About() {
 
             {/* Body copy */}
             <p className="text-cream mb-6 max-w-md">
-              OG Automotive has been the Upper Valley's shop for over 15 years. We started small because we wanted to stay small — to know every customer, to take our time, and to never cut corners.
+              O. G. Auto has been the Upper Valley's shop for over 15 years. We started small because we wanted to stay small — to know every customer, to take our time, and to never cut corners.
             </p>
 
             <p className="text-cream mb-12 max-w-md">

@@ -126,14 +126,11 @@ export default function Hero() {
                   WebkitTextStroke: '2px rgba(245, 245, 245, 0.8)',
                 }}
               >
-                OG
+                O. G.
               </span>
             </div>
             <div className="hero-line" style={{ display: 'block' }}>
               <span style={{ color: '#f5f5f5' }}>AUTO</span>
-            </div>
-            <div className="hero-line" style={{ display: 'block' }}>
-              <span style={{ color: '#f5f5f5' }}>MOTIVE</span>
             </div>
           </h1>
         </div>

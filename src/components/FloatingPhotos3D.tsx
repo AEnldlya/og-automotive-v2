@@ -1,9 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useState } from 'react';
 
 interface FloatingPhotoProps {
   position: [number, number, number];
@@ -87,6 +86,9 @@ const Scene3D = ({ photos }: Scene3DProps) => {
 };
 
 export default function FloatingPhotos3D() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => { setIsMobile(window.innerWidth < 768); }, []);
+
   const photos = [
     '/workshop01.jpg',
     '/workshop03.jpg',
@@ -95,9 +97,22 @@ export default function FloatingPhotos3D() {
     '/workshop08.jpg',
   ];
 
+  // On mobile: simple photo grid instead of 3D
+  if (isMobile) {
+    return (
+      <div className="w-full grid grid-cols-2 gap-2">
+        {photos.slice(0, 4).map((photo, i) => (
+          <div key={i} className="relative aspect-[4/3] overflow-hidden">
+            <img src={photo} alt={`Workshop ${i + 1}`} className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full h-[600px] rounded-lg overflow-hidden">
-      <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 8], fov: 45 }}>
+    <div className="w-full h-[600px] overflow-hidden">
+      <Canvas dpr={1} camera={{ position: [0, 0, 8], fov: 45 }}>
         <ambientLight intensity={0.6} />
         <pointLight position={[10, 10, 10]} intensity={0.8} />
         <Scene3D photos={photos} />

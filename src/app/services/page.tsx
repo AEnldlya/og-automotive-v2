@@ -7,7 +7,7 @@ import { ParticleFieldClient, TextScrambleClient } from '@/components/ClientWrap
 
 
 export const metadata: Metadata = {
-  title: 'Services | OG Automotive - All Makes, All Models',
+  title: 'Services | O. G. Auto - All Makes, All Models',
   description: 'Full-service auto repair for all makes and models. Oil changes, brakes, diagnostics, tires, AC, suspension, and more.',
 };
 

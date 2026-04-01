@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo, useEffect } from 'react';
+import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -123,10 +123,13 @@ const Particles = ({ particleCount = 300 }) => {
 };
 
 export default function ParticleField() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => { setIsMobile(window.innerWidth < 768); }, []);
+  if (isMobile) return null;
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 10], fov: 75 }}>
-        <Particles particleCount={300} />
+      <Canvas dpr={1} camera={{ position: [0, 0, 10], fov: 75 }}>
+        <Particles particleCount={200} />
       </Canvas>
     </div>
   );

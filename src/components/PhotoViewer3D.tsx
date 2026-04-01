@@ -66,7 +66,7 @@ export default function PhotoViewer3D() {
       >
         <Image
           src="/workshop02.jpg"
-          alt="OG Automotive shop"
+          alt="O. G. Auto shop"
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, 50vw"

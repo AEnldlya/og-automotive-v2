@@ -24,7 +24,7 @@ export default function Home() {
               <h2 className="font-bebas text-white mb-8">Built on Honest Work</h2>
               <div className="w-16 h-[2px] bg-amber mb-8" />
               <p className="text-cream mb-6 max-w-md">
-                OG Automotive has been the Upper Valley's shop for over 15 years. We started small because we wanted to stay small — to know every customer, to take our time, and to never cut corners.
+                O. G. Auto has been the Upper Valley's shop for over 15 years. We started small because we wanted to stay small — to know every customer, to take our time, and to never cut corners.
               </p>
               <p className="text-cream mb-12 max-w-md">
                 When you bring your car in, you get a real technician who actually knows what they're looking at. No upselling. No surprises.

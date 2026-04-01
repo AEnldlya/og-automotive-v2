@@ -26,7 +26,7 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
-  title: "OG Automotive | White River Junction Auto Repair",
+  title: "O. G. Auto | White River Junction Auto Repair",
   description: "Independent auto repair in White River Junction, VT. All makes, all models. Real mechanics. Real work.",
 };
 

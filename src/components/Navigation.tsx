@@ -52,7 +52,7 @@ export default function Navigation() {
     >
       {/* Logo */}
       <Link href="/" className="flex items-center gap-1 group">
-        <span className="text-lg font-bebas font-bold tracking-wider text-white">OG</span>
+        <span className="text-lg font-bebas font-bold tracking-wider text-white">O. G.</span>
         <span className="text-lg font-bebas font-bold tracking-wider text-amber">AUTO</span>
       </Link>
 

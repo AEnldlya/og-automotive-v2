@@ -4,8 +4,8 @@ import Contact from '@/components/Contact';
 import { GearModelClient, TextScrambleClient } from '@/components/ClientWrappers';
 
 export const metadata: Metadata = {
-  title: 'Contact OG Automotive | Book a Service',
-  description: 'Get in touch with OG Automotive in White River Junction, Vermont. Book your service appointment today.',
+  title: 'Contact O. G. Auto | Book a Service',
+  description: 'Get in touch with O. G. Auto in White River Junction, Vermont. Book your service appointment today.',
 };
 
 export default function ContactPage() {
@@ -61,7 +61,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="OG Automotive Location"
+                  title="O. G. Auto Location"
                 />
               </div>
             </div>

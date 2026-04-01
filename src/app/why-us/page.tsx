@@ -4,8 +4,8 @@ import WhyUs from '@/components/WhyUs';
 import Testimonials from '@/components/Testimonials';
 
 export const metadata: Metadata = {
-  title: 'Why OG Automotive | Honest Service, Fair Prices',
-  description: 'Learn why customers choose OG Automotive for transparent pricing, fast turnaround, and honest work.',
+  title: 'Why O. G. Auto | Honest Service, Fair Prices',
+  description: 'Learn why customers choose O. G. Auto for transparent pricing, fast turnaround, and honest work.',
 };
 
 export default function WhyUsPage() {

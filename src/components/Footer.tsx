@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Logo */}
           <div>
             <Link href="/" className="flex items-center gap-1 group">
-              <span className="text-base font-bebas font-bold tracking-wider text-white">OG</span>
+              <span className="text-base font-bebas font-bold tracking-wider text-white">O. G.</span>
               <span className="text-base font-bebas font-bold tracking-wider text-amber">AUTO</span>
             </Link>
           </div>
@@ -18,7 +18,7 @@ export default function Footer() {
           {/* Copyright */}
           <div className="text-center">
             <p className="text-xs lg:text-xs font-barlow-condensed tracking-widest text-muted uppercase">
-              © 2026 OG Automotive · White River Junction, VT · All Rights Reserved
+              © 2026 O. G. Auto · White River Junction, VT · All Rights Reserved
             </p>
           </div>
 

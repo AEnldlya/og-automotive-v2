@@ -8,8 +8,8 @@ import { FloatingPhotos3DClient, TextScrambleClient } from '@/components/ClientW
 
 
 export const metadata: Metadata = {
-  title: 'About OG Automotive | White River Junction Auto Repair',
-  description: 'Learn about OG Automotive\'s 15+ years of honest service in White River Junction, Vermont.',
+  title: 'About O. G. Auto | White River Junction Auto Repair',
+  description: 'Learn about O. G. Auto\'s 15+ years of honest service in White River Junction, Vermont.',
 };
 
 export default function AboutPage() {
@@ -90,7 +90,7 @@ export default function AboutPage() {
               <div className="w-16 h-[2px] bg-amber mb-8" />
               <div className="space-y-6 text-cream">
                 <p>
-                  OG Automotive wasn't born from a corporate plan or a franchise model. It started with one technician who was tired of working for shops that treated customers like walking wallets.
+                  O. G. Auto wasn't born from a corporate plan or a franchise model. It started with one technician who was tired of working for shops that treated customers like walking wallets.
                 </p>
                 <p>
                   Fifteen years ago, we opened our doors in White River Junction with a simple promise: treat people the way you'd want to be treated. Fix their cars right. Give straight quotes. Don't upsell.

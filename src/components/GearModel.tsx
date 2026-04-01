@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -28,9 +28,12 @@ const Gear = () => {
 };
 
 export default function GearModel() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => { setIsMobile(window.innerWidth < 768); }, []);
+  if (isMobile) return null;
   return (
-    <div className="w-full h-[400px] rounded-lg overflow-hidden">
-      <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 3], fov: 50 }}>
+    <div className="w-full h-[400px] overflow-hidden">
+      <Canvas dpr={1} camera={{ position: [0, 0, 3], fov: 50 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[5, 5, 5]} intensity={1} color="#c62828" />
         <pointLight position={[-5, -5, 5]} intensity={0.5} color="#ffffff" />
