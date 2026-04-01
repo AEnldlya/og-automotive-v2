@@ -111,27 +111,27 @@ export default function Hero() {
 
         {/* Main headline with clip reveal */}
         <div className="mb-6 lg:mb-8">
-          <h1 className="font-bebas leading-[0.88] mb-0">
+          <h1 className="font-bebas leading-[0.88] mb-0" style={{ fontSize: 'clamp(5rem, 14vw, 13rem)' }}>
             {/* OG - outlined/stroked */}
-            <div className="word-wrapper inline-block overflow-hidden py-1">
+            <div className="word-wrapper inline-block overflow-hidden" style={{ paddingBottom: '0.15em', paddingTop: '0.05em' }}>
               <span
                 style={{
                   WebkitTextFillColor: 'transparent',
-                  WebkitTextStroke: '1.5px rgba(245, 240, 232, 0.8)',
+                  WebkitTextStroke: '2px rgba(245, 240, 232, 0.8)',
+                  display: 'inline-block',
                 }}
-                className="inline-block"
               >
                 OG
               </span>
             </div>
             <br />
             {/* AUTOMOTIVE - split into AUTO and MOTIVE for layout */}
-            <div className="word-wrapper inline-block overflow-hidden py-1">
-              <span className="inline-block text-white">AUTO</span>
+            <div className="word-wrapper inline-block overflow-hidden" style={{ paddingBottom: '0.15em', paddingTop: '0.05em' }}>
+              <span className="inline-block" style={{ color: '#f5f0e8' }}>AUTO</span>
             </div>
             <br />
-            <div className="word-wrapper inline-block overflow-hidden py-1">
-              <span className="inline-block text-white">MOTIVE</span>
+            <div className="word-wrapper inline-block overflow-hidden" style={{ paddingBottom: '0.15em', paddingTop: '0.05em' }}>
+              <span className="inline-block" style={{ color: '#f5f0e8' }}>MOTIVE</span>
             </div>
           </h1>
         </div>

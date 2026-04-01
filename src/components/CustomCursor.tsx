@@ -9,19 +9,11 @@ export default function CustomCursor() {
   const mouseY = useRef(0);
   const ringX = useRef(0);
   const ringY = useRef(0);
+  const visible = useRef(false);
 
   useEffect(() => {
-    // Don't show custom cursor on mobile/touch devices
-    const isTouchDevice = () => {
-      return (
-        (typeof window !== 'undefined' &&
-          'ontouchstart' in window) ||
-        (typeof navigator !== 'undefined' &&
-          navigator.maxTouchPoints > 0)
-      );
-    };
-
-    if (isTouchDevice()) {
+    // Don't show on touch devices
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
       return;
     }
 
@@ -29,19 +21,19 @@ export default function CustomCursor() {
       mouseX.current = e.clientX;
       mouseY.current = e.clientY;
 
-      // Dot follows exactly
-      if (dotRef.current) {
-        dotRef.current.style.left = `${mouseX.current}px`;
-        dotRef.current.style.top = `${mouseY.current}px`;
-        dotRef.current.style.opacity = '1';
+      if (!visible.current) {
+        visible.current = true;
+        if (dotRef.current) dotRef.current.style.opacity = '1';
+        if (ringRef.current) ringRef.current.style.opacity = '1';
       }
-      if (ringRef.current) {
-        ringRef.current.style.opacity = '1';
+
+      if (dotRef.current) {
+        dotRef.current.style.left = `${e.clientX}px`;
+        dotRef.current.style.top = `${e.clientY}px`;
       }
     };
 
-    // Lerp animation loop for ring
-    const animationLoop = () => {
+    const loop = () => {
       ringX.current += (mouseX.current - ringX.current) * 0.12;
       ringY.current += (mouseY.current - ringY.current) * 0.12;
 
@@ -50,54 +42,86 @@ export default function CustomCursor() {
         ringRef.current.style.top = `${ringY.current}px`;
       }
 
-      requestAnimationFrame(animationLoop);
-    };
-
-    const handleMouseLeave = () => {
-      if (dotRef.current) dotRef.current.style.opacity = '0';
-      if (ringRef.current) ringRef.current.style.opacity = '0';
+      requestAnimationFrame(loop);
     };
 
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
+    const animId = requestAnimationFrame(loop);
 
-    const animationId = requestAnimationFrame(animationLoop);
+    // Expand ring on interactive hover
+    const addHoverListeners = () => {
+      document.querySelectorAll('a, button, input, select, textarea, [role="button"]').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          if (ringRef.current) {
+            ringRef.current.style.width = '56px';
+            ringRef.current.style.height = '56px';
+            ringRef.current.style.transform = 'translate(-28px, -28px)';
+            ringRef.current.style.borderColor = 'rgba(224, 123, 42, 0.9)';
+          }
+        });
+        el.addEventListener('mouseleave', () => {
+          if (ringRef.current) {
+            ringRef.current.style.width = '36px';
+            ringRef.current.style.height = '36px';
+            ringRef.current.style.transform = 'translate(-18px, -18px)';
+            ringRef.current.style.borderColor = 'rgba(224, 123, 42, 0.6)';
+          }
+        });
+      });
+    };
+
+    // Run after DOM is ready + on mutations
+    setTimeout(addHoverListeners, 500);
+    const observer = new MutationObserver(() => setTimeout(addHoverListeners, 100));
+    observer.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(animId);
+      observer.disconnect();
     };
   }, []);
 
   return (
     <>
-      {/* Dot layer */}
       <div
         ref={dotRef}
-        className="pointer-events-none fixed top-0 left-0 w-[6px] h-[6px] rounded-full translate-x-[-3px] translate-y-[-3px] z-[1001] opacity-0 transition-opacity"
         style={{
-          mixBlendMode: 'normal',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: 6,
+          height: 6,
+          borderRadius: '50%',
           backgroundColor: '#e07b2a',
+          transform: 'translate(-3px, -3px)',
+          zIndex: 10001,
+          pointerEvents: 'none',
+          opacity: 0,
+          transition: 'opacity 0.3s ease',
         }}
       />
-
-      {/* Ring layer */}
       <div
         ref={ringRef}
-        className="pointer-events-none fixed top-0 left-0 w-[36px] h-[36px] rounded-full translate-x-[-18px] translate-y-[-18px] z-[1001] opacity-0 transition-opacity"
         style={{
-          mixBlendMode: 'normal',
-          borderWidth: '1px',
-          borderColor: '#e07b2a',
-          borderStyle: 'solid',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: 36,
+          height: 36,
+          borderRadius: '50%',
+          border: '1px solid rgba(224, 123, 42, 0.6)',
+          transform: 'translate(-18px, -18px)',
+          zIndex: 10001,
+          pointerEvents: 'none',
+          opacity: 0,
+          transition: 'opacity 0.3s ease, width 0.2s ease, height 0.2s ease, transform 0.2s ease, border-color 0.2s ease',
         }}
       />
-
-      {/* Hide default cursor */}
       <style>{`
-        * {
-          cursor: none !important;
+        @media (pointer: fine) {
+          *, *::before, *::after { cursor: none !important; }
+          html, body { cursor: none !important; }
         }
       `}</style>
     </>
