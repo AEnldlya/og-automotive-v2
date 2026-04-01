@@ -1,7 +1,11 @@
 import Link from 'next/link';
+
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
 import HorizontalPhotoScroll from '@/components/HorizontalPhotoScroll';
+import { VideoSectionClient, TextScrambleClient } from '@/components/ClientWrappers';
+
+
 
 export default function Home() {
   return (
@@ -14,7 +18,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div className="flex flex-col justify-start">
-              <div className="label label-amber mb-4">About the Shop</div>
+              <div className="label label-amber mb-4">
+                <TextScrambleClient>About the Shop</TextScrambleClient>
+              </div>
               <h2 className="font-bebas text-white mb-8">Built on Honest Work</h2>
               <div className="w-16 h-[2px] bg-amber mb-8" />
               <p className="text-cream mb-6 max-w-md">
@@ -43,7 +49,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 lg:mb-20 items-start">
             <div>
-              <div className="label label-amber mb-4">Full-Service Repair Shop</div>
+              <div className="label label-amber mb-4">
+                <TextScrambleClient>Full-Service Repair Shop</TextScrambleClient>
+              </div>
               <h2 className="font-bebas text-white">What We Do</h2>
             </div>
           </div>
@@ -92,12 +100,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Video Section */}
+      <VideoSectionClient />
+
       {/* Testimonials Preview */}
       <section className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-16 lg:mb-20">
             <div>
-              <div className="label label-amber mb-4">Customer Testimonials</div>
+              <div className="label label-amber mb-4">
+                <TextScrambleClient>Customer Testimonials</TextScrambleClient>
+              </div>
               <h2 className="font-bebas text-white">What People Are Saying</h2>
             </div>
           </div>

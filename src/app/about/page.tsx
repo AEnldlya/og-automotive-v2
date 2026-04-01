@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+
 import About from '@/components/About';
+import { FloatingPhotos3DClient, TextScrambleClient } from '@/components/ClientWrappers';
+
+
 
 export const metadata: Metadata = {
   title: 'About OG Automotive | White River Junction Auto Repair',
@@ -32,11 +36,26 @@ export default function AboutPage() {
       {/* Full About Component */}
       <About />
 
+      {/* Floating Photos 3D Section */}
+      <section className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-charcoal">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16 lg:mb-20">
+            <div className="label label-amber mb-4">
+              <TextScrambleClient>Visual Gallery</TextScrambleClient>
+            </div>
+            <h2 className="font-bebas text-white">Our Workshop</h2>
+          </div>
+          <FloatingPhotos3DClient />
+        </div>
+      </section>
+
       {/* Team Section */}
       <section className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="mb-16 lg:mb-20">
-            <div className="label label-amber mb-4">Our Team</div>
+            <div className="label label-amber mb-4">
+              <TextScrambleClient>Our Team</TextScrambleClient>
+            </div>
             <h2 className="font-bebas text-white">The People Behind the Work</h2>
           </div>
 
@@ -64,7 +83,9 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div>
-              <div className="label label-amber mb-4">Our Story</div>
+              <div className="label label-amber mb-4">
+                <TextScrambleClient>Our Story</TextScrambleClient>
+              </div>
               <h2 className="font-bebas text-white mb-8">How It Started</h2>
               <div className="w-16 h-[2px] bg-amber mb-8" />
               <div className="space-y-6 text-cream">

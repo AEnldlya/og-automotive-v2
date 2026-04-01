@@ -4,8 +4,10 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import gsap from 'gsap';
+import TextScramble from './TextScramble';
 
 const Hero3DCarousel = dynamic(() => import('./Hero3DCarousel'), { ssr: false });
+const HeroShader = dynamic(() => import('./HeroShader'), { ssr: false });
 
 export default function Hero() {
   useEffect(() => {
@@ -64,6 +66,19 @@ export default function Hero() {
         {/* Base dark background */}
         <div className="absolute inset-0 bg-black" />
 
+        {/* Engine video background */}
+        <video
+          src="/engine-video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        />
+
+        {/* Hero Shader */}
+        <HeroShader />
+
         {/* 3D Photo Carousel */}
         <Hero3DCarousel />
 
@@ -104,9 +119,9 @@ export default function Hero() {
         {/* Eyebrow label */}
         <div className="eyebrow flex items-center gap-3 mb-8 lg:mb-12">
           <div className="w-10 h-[2px] bg-amber" />
-          <span className="text-xs lg:text-sm font-barlow-condensed font-600 tracking-widest text-amber uppercase">
+          <TextScramble className="text-xs lg:text-sm font-barlow-condensed font-600 tracking-widest text-amber uppercase">
             White River Junction, Vermont · Est. Since Day One
-          </span>
+          </TextScramble>
         </div>
 
         {/* Main headline with clip reveal */}
