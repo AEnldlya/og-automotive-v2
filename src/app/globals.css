@@ -1,26 +1,311 @@
 @import "tailwindcss";
 
+/* Design System Colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-black: #0a0908;
+  --color-charcoal: #111210;
+  --color-steel: #1c1c1a;
+  --color-amber: #e07b2a;
+  --color-amber-light: #f0a050;
+  --color-rust: #9b3a1a;
+  --color-cream: #e8e0d4;
+  --color-muted: #8a8070;
+  --color-white: #f5f0e8;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-border-amber: rgba(224, 123, 42, 0.25);
+
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 80px;
+  --space-2xl: 120px;
+  --space-3xl: 180px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Tailwind theme override */
+@theme {
+  --color-black: #0a0908;
+  --color-charcoal: #111210;
+  --color-steel: #1c1c1a;
+  --color-amber: #e07b2a;
+  --color-amber-light: #f0a050;
+  --color-rust: #9b3a1a;
+  --color-cream: #e8e0d4;
+  --color-muted: #8a8070;
+  --color-white: #f5f0e8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-black);
+  color: var(--color-cream);
+  font-family: var(--font-barlow);
+  overflow-x: hidden;
+}
+
+/* Grain overlay - fixed pseudo-element */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' seed='2' result='noise' /%3E%3CfeColorMatrix in='noise' type='saturate' values='0' /%3E%3C/filter%3E%3Crect width='200' height='200' fill='white' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bebas);
+  letter-spacing: 0.05em;
+  line-height: 0.9;
+}
+
+h1 {
+  font-size: clamp(5rem, 14vw, 13rem);
+  line-height: 0.88;
+}
+
+h2 {
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  line-height: 0.92;
+}
+
+h3 {
+  font-size: 1.4rem;
+  font-family: var(--font-barlow-condensed);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+p {
+  font-family: var(--font-barlow);
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+/* Section Labels */
+.label {
+  font-family: var(--font-barlow-condensed);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.label-amber {
+  color: var(--color-amber);
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--color-amber);
+  color: var(--color-black);
+  font-family: var(--font-barlow-condensed);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-black);
+  transform: translateX(-101%);
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  z-index: -1;
+}
+
+.btn-primary:hover {
+  color: var(--color-amber);
+}
+
+.btn-primary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-cream);
+  font-family: var(--font-barlow-condensed);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-ghost:hover {
+  color: var(--color-white);
+}
+
+.btn-ghost svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-ghost:hover svg {
+  transform: translateX(4px);
+}
+
+/* Form Elements */
+input,
+select,
+textarea {
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+  border: 1px solid var(--color-border);
+  font-family: var(--font-barlow);
+  font-size: 1rem;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-amber);
+  background-color: rgba(224, 123, 42, 0.04);
+}
+
+label {
+  font-family: var(--font-barlow-condensed);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-content {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes pulse-down {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(8px);
+  }
+}
+
+.scroll-hint {
+  animation: pulse-down 1.6s ease-in-out infinite;
+}
+
+@keyframes clip-reveal {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Word wrapper for clip reveal */
+.word-wrapper {
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* No animations when prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-content {
+    animation: none;
+  }
+
+  .scroll-hint {
+    animation: none;
+  }
+
+  body::before {
+    opacity: 0 !important;
+  }
+}
+
+/* Utility classes */
+.no-rounded {
+  border-radius: 0;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wide {
+  letter-spacing: 0.15em;
+}
+
+.tracking-wider {
+  letter-spacing: 0.22em;
+}
+
+.tracking-widest {
+  letter-spacing: 0.35em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-amber);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-amber-light);
 }
