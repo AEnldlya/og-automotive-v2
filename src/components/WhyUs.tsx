@@ -175,7 +175,7 @@ export default function WhyUs() {
               }}
             >
               <Image
-                src="/photo06.jpg"
+                src="/workshop01.jpg"
                 alt="Shop photo"
                 fill
                 className="object-cover"
@@ -209,7 +209,7 @@ export default function WhyUs() {
               }}
             >
               <Image
-                src="/photo07.jpg"
+                src="/workshop03.jpg"
                 alt="Shop photo"
                 fill
                 className="object-cover"
@@ -245,7 +245,7 @@ export default function WhyUs() {
               {/* Background image */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/photo08.jpg"
+                  src="/workshop05.jpg"
                   alt="Shop photo"
                   fill
                   className="object-cover"

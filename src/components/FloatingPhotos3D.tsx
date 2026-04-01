@@ -88,11 +88,11 @@ const Scene3D = ({ photos }: Scene3DProps) => {
 
 export default function FloatingPhotos3D() {
   const photos = [
-    '/api/placeholder?w=400&h=500',
-    '/api/placeholder?w=400&h=500',
-    '/api/placeholder?w=400&h=500',
-    '/api/placeholder?w=400&h=500',
-    '/api/placeholder?w=400&h=500',
+    '/workshop01.jpg',
+    '/workshop03.jpg',
+    '/workshop05.jpg',
+    '/workshop06.jpg',
+    '/workshop08.jpg',
   ];
 
   return (

@@ -5,12 +5,12 @@ import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 const photos = [
-  '/photo02.jpg',
-  '/photo03.jpg',
-  '/photo04.jpg',
-  '/photo05.jpg',
-  '/photo06.jpg',
-  '/photo07.jpg',
+  '/workshop01.jpg',
+  '/workshop02.jpg',
+  '/workshop03.jpg',
+  '/workshop04.jpg',
+  '/workshop05.jpg',
+  '/workshop06.jpg',
 ];
 
 export default function PhotoGalleryGrid() {

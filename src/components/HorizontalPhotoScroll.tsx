@@ -8,16 +8,16 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 const photos = [
+  '/workshop01.jpg',
+  '/workshop02.jpg',
+  '/workshop03.jpg',
+  '/workshop04.jpg',
   '/photo01.jpg',
+  '/workshop05.jpg',
+  '/workshop06.jpg',
+  '/workshop07.jpg',
   '/photo02.jpg',
-  '/photo03.jpg',
-  '/photo04.jpg',
-  '/photo05.jpg',
-  '/photo06.jpg',
-  '/photo07.jpg',
-  '/photo08.jpg',
-  '/photo09.jpg',
-  '/photo10.jpg',
+  '/workshop08.jpg',
 ];
 
 export default function HorizontalPhotoScroll() {

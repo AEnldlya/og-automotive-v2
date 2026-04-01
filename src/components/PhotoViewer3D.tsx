@@ -65,7 +65,7 @@ export default function PhotoViewer3D() {
         }}
       >
         <Image
-          src="/photo01.jpg"
+          src="/workshop02.jpg"
           alt="OG Automotive shop"
           fill
           className="object-cover"
