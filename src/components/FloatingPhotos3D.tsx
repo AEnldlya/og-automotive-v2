@@ -97,7 +97,7 @@ export default function FloatingPhotos3D() {
 
   return (
     <div className="w-full h-[600px] rounded-lg overflow-hidden">
-      <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
+      <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 8], fov: 45 }}>
         <ambientLight intensity={0.6} />
         <pointLight position={[10, 10, 10]} intensity={0.8} />
         <Scene3D photos={photos} />

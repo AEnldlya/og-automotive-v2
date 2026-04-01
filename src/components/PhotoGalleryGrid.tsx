@@ -85,7 +85,7 @@ export default function PhotoGalleryGrid() {
               opacity: tilt[idx]?.x ? 0.3 : 0,
             }}
             style={{
-              background: 'linear-gradient(135deg, rgba(224, 123, 42, 0.3) 0%, transparent 100%)',
+              background: 'linear-gradient(135deg, rgba(198, 40, 40, 0.3) 0%, transparent 100%)',
             }}
           />
         </motion.div>

@@ -17,10 +17,10 @@ const Gear = () => {
     <mesh ref={meshRef} position={[0, 0, 0]}>
       <torusGeometry args={[1.5, 0.6, 16, 24]} />
       <meshStandardMaterial
-        color="#e07b2a"
+        color="#c62828"
         metalness={0.8}
         roughness={0.2}
-        emissive="#9b3a1a"
+        emissive="#1565c0"
         emissiveIntensity={0.3}
       />
     </mesh>
@@ -30,9 +30,9 @@ const Gear = () => {
 export default function GearModel() {
   return (
     <div className="w-full h-[400px] rounded-lg overflow-hidden">
-      <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
+      <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 3], fov: 50 }}>
         <ambientLight intensity={0.5} />
-        <pointLight position={[5, 5, 5]} intensity={1} color="#e07b2a" />
+        <pointLight position={[5, 5, 5]} intensity={1} color="#c62828" />
         <pointLight position={[-5, -5, 5]} intensity={0.5} color="#ffffff" />
         <Gear />
       </Canvas>

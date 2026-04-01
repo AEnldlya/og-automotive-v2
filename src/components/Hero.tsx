@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import gsap from 'gsap';
 import TextScramble from './TextScramble';
 
-const Hero3DCarousel = dynamic(() => import('./Hero3DCarousel'), { ssr: false });
+// Hero3DCarousel removed for performance
 const HeroShader = dynamic(() => import('./HeroShader'), { ssr: false });
 
 export default function Hero() {
@@ -80,13 +80,13 @@ export default function Hero() {
         <HeroShader />
 
         {/* 3D Photo Carousel */}
-        <Hero3DCarousel />
+        {/* Removed 3D carousel for performance */}
 
         {/* Radial glow - rust at upper right */}
         <div
           className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full opacity-[0.18] blur-[120px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, #9b3a1a 0%, transparent 70%)',
+            background: 'radial-gradient(circle, #1565c0 0%, transparent 70%)',
           }}
         />
 
@@ -94,7 +94,7 @@ export default function Hero() {
         <div
           className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-[0.08] blur-[100px] pointer-events-none"
           style={{
-            background: 'radial-gradient(circle, #e07b2a 0%, transparent 60%)',
+            background: 'radial-gradient(circle, #c62828 0%, transparent 60%)',
           }}
         />
 

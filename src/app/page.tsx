@@ -144,7 +144,7 @@ export default function Home() {
                   <div
                     className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-barlow-condensed font-600 text-xs text-white"
                     style={{
-                      background: `linear-gradient(135deg, #e07b2a 0%, #9b3a1a 100%)`,
+                      background: `linear-gradient(135deg, #c62828 0%, #1565c0 100%)`,
                     }}
                   >
                     {testimonial.initials}

@@ -16,7 +16,7 @@ interface Particle {
   originalZ: number;
 }
 
-const Particles = ({ particleCount = 800 }) => {
+const Particles = ({ particleCount = 300 }) => {
   const pointsRef = useRef<THREE.Points>(null);
   const particlesRef = useRef<Particle[]>([]);
   const { viewport, camera } = useThree();
@@ -113,7 +113,7 @@ const Particles = ({ particleCount = 800 }) => {
       <bufferGeometry attach="geometry" {...geometry} />
       <pointsMaterial
         size={2}
-        color="#e07b2a"
+        color="#c62828"
         sizeAttenuation
         transparent
         opacity={0.6}
@@ -125,8 +125,8 @@ const Particles = ({ particleCount = 800 }) => {
 export default function ParticleField() {
   return (
     <div className="absolute inset-0 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
-        <Particles particleCount={800} />
+      <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 10], fov: 75 }}>
+        <Particles particleCount={300} />
       </Canvas>
     </div>
   );

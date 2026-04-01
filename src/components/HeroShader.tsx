@@ -64,8 +64,8 @@ const ShaderMaterial = () => {
       float noise = mix(noise1, noise2, 0.5);
 
       // Colors: amber, rust, black
-      vec3 amber = vec3(0.878, 0.482, 0.165); // #e07b2a
-      vec3 rust = vec3(0.608, 0.227, 0.102); // #9b3a1a
+      vec3 amber = vec3(0.776, 0.157, 0.157); // #c62828
+      vec3 rust = vec3(0.082, 0.396, 0.753); // #1565c0
       vec3 black = vec3(0.0, 0.0, 0.0);
 
       // Create gradient based on position and noise
@@ -121,7 +121,7 @@ const ShaderMaterial = () => {
 export default function HeroShader() {
   return (
     <div className="absolute inset-0">
-      <Canvas camera={{ position: [0, 0, 1] }}>
+      <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }} camera={{ position: [0, 0, 1] }}>
         <ShaderMaterial />
       </Canvas>
     </div>
