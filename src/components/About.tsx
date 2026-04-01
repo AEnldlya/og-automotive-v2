@@ -1,9 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import PhotoViewer3D from './PhotoViewer3D';
+import PhotoGalleryGrid from './PhotoGalleryGrid';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,42 +108,16 @@ export default function About() {
             </div>
           </div>
 
-          {/* Right column - Image frame */}
+          {/* Right column - 3D Photo Viewer */}
           <div className="flex items-center justify-center relative lg:h-full">
-            <div className="relative w-full max-w-sm aspect-[3/4] bg-charcoal overflow-hidden">
-              {/* Corner brackets */}
-              {/* Top-right bracket */}
-              <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-amber z-10" />
-
-              {/* Bottom-left bracket */}
-              <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-amber z-10" />
-
-              {/* Image or placeholder */}
-              <div className="relative w-full h-full">
-                <Image
-                  src="/photo01.jpg"
-                  alt="OG Automotive shop"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-
-                {/* Gradient overlay on edges */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background:
-                      'linear-gradient(135deg, transparent 0%, transparent 60%, rgba(17, 18, 16, 0.6) 100%)',
-                  }}
-                />
-              </div>
-
-              {/* Location tag */}
-              <div className="absolute bottom-4 left-4 z-20 bg-amber px-3 py-1 text-xs font-barlow-condensed font-600 tracking-widest uppercase text-black rounded-none">
-                White River Jct, VT 05001
-              </div>
-            </div>
+            <PhotoViewer3D />
           </div>
+        </div>
+
+        {/* Photo Gallery Grid */}
+        <div className="mt-24 lg:mt-32">
+          <h3 className="font-bebas text-white mb-8">Our Shop</h3>
+          <PhotoGalleryGrid />
         </div>
       </div>
     </section>

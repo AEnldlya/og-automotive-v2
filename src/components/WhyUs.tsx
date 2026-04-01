@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,8 +27,14 @@ const features = [
   },
 ];
 
+interface CardTilt {
+  [key: number]: { x: number; y: number };
+}
+
 export default function WhyUs() {
   const stackRef = useRef<HTMLDivElement>(null);
+  const [cardTilt, setCardTilt] = useState<CardTilt>({});
+  const cardRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     // Scroll-triggered reveal for left column
@@ -51,32 +59,37 @@ export default function WhyUs() {
       );
     });
 
-    // Card stack hover animation
-    if (stackRef.current) {
-      const cards = stackRef.current.querySelectorAll('.stack-card');
-
-      stackRef.current.addEventListener('mouseenter', () => {
-        cards.forEach((card) => {
-          gsap.to(card, { rotation: 0, duration: 0.4, ease: 'power2.out' });
-        });
-      });
-
-      stackRef.current.addEventListener('mouseleave', () => {
-        gsap.to(cards[0], { rotation: 2.5, duration: 0.4, ease: 'power2.out' });
-        gsap.to(cards[1], { rotation: -1, duration: 0.4, ease: 'power2.out' });
-        gsap.to(cards[2], { rotation: 0, duration: 0.4, ease: 'power2.out' });
-      });
-
-      // Initialize rotations
-      gsap.set(cards[0], { rotation: 2.5 });
-      gsap.set(cards[1], { rotation: -1 });
-      gsap.set(cards[2], { rotation: 0 });
-    }
-
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+
+  const handleCardMouseMove = (idx: number, e: React.MouseEvent<HTMLDivElement>) => {
+    const ref = cardRefs.current[idx];
+    if (!ref) return;
+
+    const rect = ref.getBoundingClientRect();
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const tiltX = ((y - centerY) / centerY) * 12;
+    const tiltY = ((x - centerX) / centerX) * 12;
+
+    setCardTilt((prev) => ({
+      ...prev,
+      [idx]: { x: -tiltX, y: tiltY },
+    }));
+  };
+
+  const handleCardMouseLeave = (idx: number) => {
+    setCardTilt((prev) => ({
+      ...prev,
+      [idx]: { x: 0, y: 0 },
+    }));
+  };
 
   return (
     <section id="why" className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-black">
@@ -134,47 +147,132 @@ export default function WhyUs() {
             </div>
           </div>
 
-          {/* Right column - Card stack */}
-          <div
-            ref={stackRef}
-            className="relative h-80 lg:h-96 flex items-center justify-center cursor-pointer"
-          >
-            {/* Bottom card - charcoal */}
-            <div
-              className="stack-card absolute w-full max-w-sm h-56 bg-charcoal border border-border"
-              style={{ bottom: '0px', zIndex: 1 }}
-            />
-
-            {/* Middle card - black */}
-            <div
-              className="stack-card absolute w-full max-w-sm h-56 bg-black border border-border"
-              style={{ bottom: '20px', zIndex: 2 }}
-            />
-
-            {/* Top card - with review */}
-            <div
-              className="stack-card absolute w-full max-w-sm h-56 bg-steel border border-border p-6 lg:p-8 flex flex-col justify-between"
-              style={{ bottom: '40px', zIndex: 3 }}
+          {/* Right column - 3D Card stack */}
+          <div ref={stackRef} className="relative h-80 lg:h-96 flex items-center justify-center cursor-pointer">
+            {/* Bottom card - charcoal with photo */}
+            <motion.div
+              ref={(el) => {
+                if (el) cardRefs.current[0] = el;
+              }}
+              onMouseMove={(e) => handleCardMouseMove(0, e)}
+              onMouseLeave={() => handleCardMouseLeave(0)}
+              className="stack-card absolute w-full max-w-sm h-56 bg-charcoal border border-border overflow-hidden"
+              style={{
+                bottom: '0px',
+                zIndex: 1,
+                perspective: '1000px',
+                transformStyle: 'preserve-3d',
+              }}
+              animate={{
+                rotateX: cardTilt[0]?.x || 0,
+                rotateY: cardTilt[0]?.y || 0,
+                z: cardTilt[0]?.x ? 20 : 0,
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 30,
+              }}
             >
-              {/* Label */}
-              <div className="text-xs font-barlow-condensed font-600 tracking-widest text-amber uppercase">
-                Customer Review
+              <Image
+                src="/photo06.jpg"
+                alt="Shop photo"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </motion.div>
+
+            {/* Middle card - black with photo */}
+            <motion.div
+              ref={(el) => {
+                if (el) cardRefs.current[1] = el;
+              }}
+              onMouseMove={(e) => handleCardMouseMove(1, e)}
+              onMouseLeave={() => handleCardMouseLeave(1)}
+              className="stack-card absolute w-full max-w-sm h-56 bg-black border border-border overflow-hidden"
+              style={{
+                bottom: '20px',
+                zIndex: 2,
+                perspective: '1000px',
+                transformStyle: 'preserve-3d',
+              }}
+              animate={{
+                rotateX: cardTilt[1]?.x || 0,
+                rotateY: cardTilt[1]?.y || 0,
+                z: cardTilt[1]?.x ? 20 : 0,
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 30,
+              }}
+            >
+              <Image
+                src="/photo07.jpg"
+                alt="Shop photo"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+            </motion.div>
+
+            {/* Top card - with review and photo */}
+            <motion.div
+              ref={(el) => {
+                if (el) cardRefs.current[2] = el;
+              }}
+              onMouseMove={(e) => handleCardMouseMove(2, e)}
+              onMouseLeave={() => handleCardMouseLeave(2)}
+              className="stack-card absolute w-full max-w-sm h-56 bg-steel border border-border p-6 lg:p-8 flex flex-col justify-between overflow-hidden"
+              style={{
+                bottom: '40px',
+                zIndex: 3,
+                perspective: '1000px',
+                transformStyle: 'preserve-3d',
+              }}
+              animate={{
+                rotateX: cardTilt[2]?.x || 0,
+                rotateY: cardTilt[2]?.y || 0,
+                z: cardTilt[2]?.x ? 20 : 0,
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 30,
+              }}
+            >
+              {/* Background image */}
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/photo08.jpg"
+                  alt="Shop photo"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-60" />
               </div>
 
-              {/* Quote */}
-              <div>
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="text-xs font-barlow-condensed font-600 tracking-widest text-amber uppercase">
+                  Customer Review
+                </div>
+              </div>
+
+              <div className="relative z-10">
                 <p className="font-bebas text-2xl lg:text-3xl text-white leading-tight mb-4">
                   "Brought my truck in with a noise I'd been ignoring for two months."
                 </p>
               </div>
 
-              {/* Attribution */}
-              <div>
+              <div className="relative z-10">
                 <p className="text-sm font-barlow-condensed font-600 text-white uppercase tracking-wider">
                   Dave K. <span className="text-amber">★★★★★</span>
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

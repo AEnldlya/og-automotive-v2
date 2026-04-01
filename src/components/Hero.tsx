@@ -1,8 +1,11 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import gsap from 'gsap';
+
+const Hero3DCarousel = dynamic(() => import('./Hero3DCarousel'), { ssr: false });
 
 export default function Hero() {
   useEffect(() => {
@@ -61,6 +64,9 @@ export default function Hero() {
         {/* Base dark background */}
         <div className="absolute inset-0 bg-black" />
 
+        {/* 3D Photo Carousel */}
+        <Hero3DCarousel />
+
         {/* Radial glow - rust at upper right */}
         <div
           className="absolute top-0 right-0 w-[800px] h-[800px] rounded-full opacity-[0.18] blur-[120px] pointer-events-none"
@@ -107,7 +113,7 @@ export default function Hero() {
         <div className="mb-6 lg:mb-8">
           <h1 className="font-bebas leading-[0.88] mb-0">
             {/* OG - outlined/stroked */}
-            <div className="word-wrapper inline-block overflow-hidden">
+            <div className="word-wrapper inline-block overflow-hidden py-1">
               <span
                 style={{
                   WebkitTextFillColor: 'transparent',
@@ -120,11 +126,11 @@ export default function Hero() {
             </div>
             <br />
             {/* AUTOMOTIVE - split into AUTO and MOTIVE for layout */}
-            <div className="word-wrapper inline-block overflow-hidden">
+            <div className="word-wrapper inline-block overflow-hidden py-1">
               <span className="inline-block text-white">AUTO</span>
             </div>
             <br />
-            <div className="word-wrapper inline-block overflow-hidden">
+            <div className="word-wrapper inline-block overflow-hidden py-1">
               <span className="inline-block text-white">MOTIVE</span>
             </div>
           </h1>

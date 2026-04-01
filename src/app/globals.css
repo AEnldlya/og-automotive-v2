@@ -245,6 +245,7 @@ label {
 .word-wrapper {
   overflow: hidden;
   display: inline-block;
+  line-height: 0.88;
 }
 
 /* No animations when prefers-reduced-motion */

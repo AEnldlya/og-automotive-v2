@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
+import HorizontalPhotoScroll from '@/components/HorizontalPhotoScroll';
 
 export default function Home() {
   return (
@@ -33,6 +34,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Horizontal Photo Scroll */}
+      <HorizontalPhotoScroll />
 
       {/* Services Preview */}
       <section className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-black">

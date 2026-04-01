@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import TiltCard from './TiltCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -156,7 +157,7 @@ export default function Services() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-border"
         >
           {services.map((service, idx) => (
-            <div
+            <TiltCard
               key={service.number}
               className="service-card relative border-r border-b border-border p-6 lg:p-8 transition-colors duration-300 cursor-pointer group"
             >
@@ -192,7 +193,7 @@ export default function Services() {
                   <path strokeLinecap="square" strokeLinejoin="miter" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>

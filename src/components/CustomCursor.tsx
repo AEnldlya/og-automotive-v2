@@ -33,6 +33,10 @@ export default function CustomCursor() {
       if (dotRef.current) {
         dotRef.current.style.left = `${mouseX.current}px`;
         dotRef.current.style.top = `${mouseY.current}px`;
+        dotRef.current.style.opacity = '1';
+      }
+      if (ringRef.current) {
+        ringRef.current.style.opacity = '1';
       }
     };
 
@@ -49,25 +53,18 @@ export default function CustomCursor() {
       requestAnimationFrame(animationLoop);
     };
 
-    const handleMouseEnter = () => {
-      if (dotRef.current) dotRef.current.style.opacity = '1';
-      if (ringRef.current) ringRef.current.style.opacity = '1';
-    };
-
     const handleMouseLeave = () => {
       if (dotRef.current) dotRef.current.style.opacity = '0';
       if (ringRef.current) ringRef.current.style.opacity = '0';
     };
 
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseenter', handleMouseEnter);
     document.addEventListener('mouseleave', handleMouseLeave);
 
     const animationId = requestAnimationFrame(animationLoop);
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseenter', handleMouseEnter);
       document.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationId);
     };
@@ -78,15 +75,23 @@ export default function CustomCursor() {
       {/* Dot layer */}
       <div
         ref={dotRef}
-        className="pointer-events-none fixed top-0 left-0 w-[6px] h-[6px] rounded-full bg-amber translate-x-[-3px] translate-y-[-3px] z-[1001] opacity-0 transition-opacity"
-        style={{ mixBlendMode: 'normal' }}
+        className="pointer-events-none fixed top-0 left-0 w-[6px] h-[6px] rounded-full translate-x-[-3px] translate-y-[-3px] z-[1001] opacity-0 transition-opacity"
+        style={{
+          mixBlendMode: 'normal',
+          backgroundColor: '#e07b2a',
+        }}
       />
 
       {/* Ring layer */}
       <div
         ref={ringRef}
-        className="pointer-events-none fixed top-0 left-0 w-[36px] h-[36px] border border-amber rounded-full translate-x-[-18px] translate-y-[-18px] z-[1001] opacity-0 transition-opacity"
-        style={{ mixBlendMode: 'normal' }}
+        className="pointer-events-none fixed top-0 left-0 w-[36px] h-[36px] rounded-full translate-x-[-18px] translate-y-[-18px] z-[1001] opacity-0 transition-opacity"
+        style={{
+          mixBlendMode: 'normal',
+          borderWidth: '1px',
+          borderColor: '#e07b2a',
+          borderStyle: 'solid',
+        }}
       />
 
       {/* Hide default cursor */}
