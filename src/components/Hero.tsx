@@ -111,14 +111,15 @@ export default function Hero() {
 
         {/* Main headline with clip reveal */}
         <div className="mb-6 lg:mb-8">
-          <h1 className="font-bebas leading-[0.88] mb-0" style={{ fontSize: 'clamp(5rem, 14vw, 13rem)' }}>
+          <h1 className="font-bebas mb-0" style={{ fontSize: 'clamp(5rem, 14vw, 13rem)', lineHeight: 1 }}>
             {/* OG - outlined/stroked */}
-            <div className="word-wrapper inline-block overflow-hidden" style={{ paddingBottom: '0.15em', paddingTop: '0.05em' }}>
+            <div className="word-wrapper inline-block overflow-hidden" style={{ lineHeight: 1.15, marginBottom: '-0.08em' }}>
               <span
                 style={{
                   WebkitTextFillColor: 'transparent',
                   WebkitTextStroke: '2px rgba(245, 240, 232, 0.8)',
                   display: 'inline-block',
+                  lineHeight: 'inherit',
                 }}
               >
                 OG
@@ -126,12 +127,12 @@ export default function Hero() {
             </div>
             <br />
             {/* AUTOMOTIVE - split into AUTO and MOTIVE for layout */}
-            <div className="word-wrapper inline-block overflow-hidden" style={{ paddingBottom: '0.15em', paddingTop: '0.05em' }}>
-              <span className="inline-block" style={{ color: '#f5f0e8' }}>AUTO</span>
+            <div className="word-wrapper inline-block overflow-hidden" style={{ lineHeight: 1.15, marginBottom: '-0.08em' }}>
+              <span className="inline-block" style={{ color: '#f5f0e8', lineHeight: 'inherit' }}>AUTO</span>
             </div>
             <br />
-            <div className="word-wrapper inline-block overflow-hidden" style={{ paddingBottom: '0.15em', paddingTop: '0.05em' }}>
-              <span className="inline-block" style={{ color: '#f5f0e8' }}>MOTIVE</span>
+            <div className="word-wrapper inline-block overflow-hidden" style={{ lineHeight: 1.15 }}>
+              <span className="inline-block" style={{ color: '#f5f0e8', lineHeight: 'inherit' }}>MOTIVE</span>
             </div>
           </h1>
         </div>
