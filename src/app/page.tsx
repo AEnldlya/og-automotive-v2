@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import HeroMagic from '@/components/HeroMagic';
+import Hero21st from '@/components/Hero21st';
 import Marquee from '@/components/Marquee';
 import HorizontalPhotoScroll from '@/components/HorizontalPhotoScroll';
 import CarDisassembly from '@/components/CarDisassembly';
@@ -11,7 +11,7 @@ import { VideoSectionClient, TextScrambleClient } from '@/components/ClientWrapp
 export default function Home() {
   return (
     <>
-      <HeroMagic />
+      <Hero21st />
       <Marquee />
 
       {/* About Preview */}
