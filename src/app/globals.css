@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Fontshare fonts - Tanker for display (industrial/auto feel), General Sans for body */
+@import url('https://api.fontshare.com/v2/css?f[]=tanker@400&f[]=general-sans@400,500,600&display=swap');
+
 /* Design System Colors - OG Auto Brand */
 :root {
   --color-black: #0a0f1a;
@@ -14,6 +17,10 @@
   --color-white: #ffffff;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-primary: rgba(196, 30, 58, 0.3);
+  
+  /* Fontshare font variables */
+  --font-tanker: 'Tanker', sans-serif;
+  --font-general-sans: 'General Sans', sans-serif;
 
   /* Spacing */
   --space-xs: 8px;

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import HeroAceternity from '@/components/HeroAceternity';
+import HeroDisassembly from '@/components/HeroDisassembly';
 import Logo from '@/components/Logo';
 import { TextScrambleClient } from '@/components/ClientWrappers';
 
@@ -20,7 +20,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <HeroAceternity />
+      <HeroDisassembly />
 
       {/* About Preview - NO PHOTOS */}
       <section id="about" className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-[#0a0f1a]">
