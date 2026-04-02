@@ -54,8 +54,8 @@ export default function Contact() {
 
       // Show success state
       if (submitRef.current) {
-        submitRef.current.textContent = 'Request Sent';
-        submitRef.current.style.backgroundColor = 'var(--color-green, #10b981)';
+        submitRef.current.textContent = 'Request Sent ✓';
+        submitRef.current.style.backgroundColor = '#10b981';
         setSubmitted(true);
 
         // Reset after 3 seconds
@@ -79,7 +79,7 @@ export default function Contact() {
       setError(err instanceof Error ? err.message : 'An error occurred');
       if (submitRef.current) {
         submitRef.current.textContent = 'Error - Try Again';
-        submitRef.current.style.backgroundColor = 'var(--color-red, #ef4444)';
+        submitRef.current.style.backgroundColor = '#ef4444';
       }
     } finally {
       setLoading(false);
@@ -87,222 +87,125 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-charcoal">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left column - Contact info */}
-          <div className="flex flex-col justify-start">
-            {/* Label */}
-            <div className="label label-amber mb-4">Get In Touch</div>
-
-            {/* Title */}
-            <h2 className="font-bebas text-white mb-8">Come Find Us in WRJ</h2>
-
-            {/* Divider line */}
-            <div className="w-16 h-[2px] bg-amber mb-12" />
-
-            {/* Contact details */}
-            <div className="space-y-8">
-              {/* Address */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-5 h-5 text-amber mt-1">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="square"
-                      strokeLinejoin="miter"
-                      strokeWidth={1.5}
-                      d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="square"
-                      strokeLinejoin="miter"
-                      strokeWidth={1.5}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-xs font-barlow-condensed font-600 tracking-widest text-amber uppercase mb-2">
-                    Address
-                  </div>
-                  <p className="text-cream">160 Sykes Mountain Ave</p>
-                  <p className="text-cream">White River Junction, VT 05001</p>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-5 h-5 text-amber mt-1">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="square"
-                      strokeLinejoin="miter"
-                      strokeWidth={1.5}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-xs font-barlow-condensed font-600 tracking-widest text-amber uppercase mb-2">
-                    Phone
-                  </div>
-                  <p className="text-cream">
-                    <a href="tel:+18024782224" className="hover:text-amber transition-colors">
-                      (802) 478-2224
-                    </a>
-                  </p>
-                </div>
-              </div>
-
-              {/* Hours */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-5 h-5 text-amber mt-1">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="square"
-                      strokeLinejoin="miter"
-                      strokeWidth={1.5}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-xs font-barlow-condensed font-600 tracking-widest text-amber uppercase mb-2">
-                    Hours
-                  </div>
-                  <div className="text-cream text-sm">
-                    <p>Mon–Fri: 7:30am–5:30pm</p>
-                    <p>Sat: 8am–2pm</p>
-                    <p>Sun: Closed</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right column - Contact form */}
+    <div className="w-full">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* First and Last Name */}
+        <div className="grid grid-cols-2 gap-4">
           <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* First and Last Name */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label htmlFor="firstName" className="block label mb-2">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-black border border-border text-cream focus:border-amber focus:bg-opacity-100 transition-all"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="lastName" className="block label mb-2">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-black border border-border text-cream focus:border-amber focus:bg-opacity-100 transition-all"
-                  />
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div>
-                <label htmlFor="phone" className="block label mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-black border border-border text-cream focus:border-amber focus:bg-opacity-100 transition-all"
-                />
-              </div>
-
-              {/* Vehicle */}
-              <div>
-                <label htmlFor="vehicle" className="block label mb-2">
-                  Vehicle
-                </label>
-                <input
-                  type="text"
-                  id="vehicle"
-                  name="vehicle"
-                  placeholder="2018 Toyota Tacoma"
-                  value={formData.vehicle}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-black border border-border text-cream placeholder-muted focus:border-amber focus:bg-opacity-100 transition-all"
-                />
-              </div>
-
-              {/* Service dropdown */}
-              <div>
-                <label htmlFor="service" className="block label mb-2">
-                  Service Needed
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-black border border-border text-cream focus:border-amber focus:bg-opacity-100 transition-all appearance-none cursor-pointer"
-                >
-                  {services.map((service) => (
-                    <option key={service} value={service} className="bg-black text-cream">
-                      {service}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Details textarea */}
-              <div>
-                <label htmlFor="details" className="block label mb-2">
-                  Details / Message
-                </label>
-                <textarea
-                  id="details"
-                  name="details"
-                  value={formData.details}
-                  onChange={handleChange}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-black border border-border text-cream focus:border-amber focus:bg-opacity-100 transition-all resize-none"
-                />
-              </div>
-
-              {/* Error message */}
-              {error && (
-                <div className="px-4 py-3 bg-red-900 bg-opacity-20 border border-red-600 text-red-400 text-sm rounded">
-                  {error}
-                </div>
-              )}
-
-              {/* Submit button */}
-              <button
-                ref={submitRef}
-                type="submit"
-                disabled={submitted || loading}
-                className="w-full btn-primary mt-8"
-              >
-                {loading ? 'Sending...' : 'Send Request'}
-              </button>
-            </form>
+            <label htmlFor="firstName" className="block label mb-2">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-[#0a0f1a] border border-[rgba(255,255,255,0.08)] text-[#f1f5f9] focus:border-[#c41e3a] focus:outline-none transition-all"
+            />
+          </div>
+          <div>
+            <label htmlFor="lastName" className="block label mb-2">
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-3 bg-[#0a0f1a] border border-[rgba(255,255,255,0.08)] text-[#f1f5f9] focus:border-[#c41e3a] focus:outline-none transition-all"
+            />
           </div>
         </div>
-      </div>
-    </section>
+
+        {/* Phone */}
+        <div>
+          <label htmlFor="phone" className="block label mb-2">
+            Phone Number
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 bg-[#0a0f1a] border border-[rgba(255,255,255,0.08)] text-[#f1f5f9] focus:border-[#c41e3a] focus:outline-none transition-all"
+          />
+        </div>
+
+        {/* Vehicle */}
+        <div>
+          <label htmlFor="vehicle" className="block label mb-2">
+            Vehicle
+          </label>
+          <input
+            type="text"
+            id="vehicle"
+            name="vehicle"
+            placeholder="2018 Toyota Tacoma"
+            value={formData.vehicle}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 bg-[#0a0f1a] border border-[rgba(255,255,255,0.08)] text-[#f1f5f9] placeholder-[#8b9db8] focus:border-[#c41e3a] focus:outline-none transition-all"
+          />
+        </div>
+
+        {/* Service dropdown */}
+        <div>
+          <label htmlFor="service" className="block label mb-2">
+            Service Needed
+          </label>
+          <select
+            id="service"
+            name="service"
+            value={formData.service}
+            onChange={handleChange}
+            className="w-full px-4 py-3 bg-[#0a0f1a] border border-[rgba(255,255,255,0.08)] text-[#f1f5f9] focus:border-[#c41e3a] focus:outline-none transition-all appearance-none cursor-pointer"
+          >
+            {services.map((service) => (
+              <option key={service} value={service} className="bg-[#0a0f1a] text-[#f1f5f9]">
+                {service}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Details textarea */}
+        <div>
+          <label htmlFor="details" className="block label mb-2">
+            Details / Message
+          </label>
+          <textarea
+            id="details"
+            name="details"
+            value={formData.details}
+            onChange={handleChange}
+            rows={4}
+            className="w-full px-4 py-3 bg-[#0a0f1a] border border-[rgba(255,255,255,0.08)] text-[#f1f5f9] focus:border-[#c41e3a] focus:outline-none transition-all resize-none"
+          />
+        </div>
+
+        {/* Error message */}
+        {error && (
+          <div className="px-4 py-3 bg-red-900/20 border border-red-600 text-red-400 text-sm">
+            {error}
+          </div>
+        )}
+
+        {/* Submit button */}
+        <button
+          ref={submitRef}
+          type="submit"
+          disabled={submitted || loading}
+          className="w-full btn-primary mt-8"
+        >
+          {loading ? 'Sending...' : 'Send Request'}
+        </button>
+      </form>
+    </div>
   );
 }
