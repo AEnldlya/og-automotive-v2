@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
-/* Design System Colors */
+/* Design System Colors - FROM PRD */
 :root {
-  --color-black: #0a0a0f;
-  --color-charcoal: #12131a;
-  --color-steel: #1c1d26;
-  --color-amber: #c62828;
-  --color-amber-light: #ef5350;
-  --color-rust: #1565c0;
-  --color-cream: #e0e0e0;
-  --color-muted: #9e9e9e;
-  --color-white: #f5f5f5;
-  --color-border: rgba(255, 255, 255, 0.07);
-  --color-border-amber: rgba(198, 40, 40, 0.25);
+  --color-black: #0a0908;
+  --color-charcoal: #1a1917;
+  --color-steel: #252422;
+  --color-amber: #e07b2a;
+  --color-amber-light: #f08a3a;
+  --color-rust: #c45a2b;
+  --color-cream: #f5f3ef;
+  --color-muted: #8b8680;
+  --color-white: #ffffff;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-amber: rgba(224, 123, 42, 0.3);
 
   /* Spacing */
   --space-xs: 8px;
@@ -26,15 +26,15 @@
 
 /* Tailwind theme override */
 @theme {
-  --color-black: #0a0a0f;
-  --color-charcoal: #12131a;
-  --color-steel: #1c1d26;
-  --color-amber: #c62828;
-  --color-amber-light: #ef5350;
-  --color-rust: #1565c0;
-  --color-cream: #e0e0e0;
-  --color-muted: #9e9e9e;
-  --color-white: #f5f5f5;
+  --color-black: #0a0908;
+  --color-charcoal: #1a1917;
+  --color-steel: #252422;
+  --color-amber: #e07b2a;
+  --color-amber-light: #f08a3a;
+  --color-rust: #c45a2b;
+  --color-cream: #f5f3ef;
+  --color-muted: #8b8680;
+  --color-white: #ffffff;
 }
 
 html {
@@ -46,6 +46,7 @@ body {
   color: var(--color-cream);
   font-family: var(--font-barlow);
   overflow-x: hidden;
+  cursor: none; /* Hide default cursor for custom cursor */
 }
 
 /* Grain overlay - fixed pseudo-element */
@@ -64,13 +65,13 @@ body::before {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-bebas);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   line-height: 0.9;
 }
 
 h1 {
   font-size: clamp(5rem, 14vw, 13rem);
-  line-height: 1;
+  line-height: 0.85;
 }
 
 h2 {
@@ -89,13 +90,13 @@ h3 {
 p {
   font-family: var(--font-barlow);
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 /* Section Labels */
 .label {
   font-family: var(--font-barlow-condensed);
-  font-size: 0.68rem;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -106,7 +107,27 @@ p {
   color: var(--color-amber);
 }
 
-/* Button Styles */
+/* Eyebrow Label with Line */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-barlow-condensed);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-amber);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-amber);
+}
+
+/* Button Styles - PRD Spec */
 .btn-primary {
   background-color: var(--color-amber);
   color: var(--color-black);
@@ -115,12 +136,12 @@ p {
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  padding: 14px 24px;
+  padding: 16px 28px;
   border: none;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+  transition: color 0.4s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 .btn-primary::before {
@@ -133,7 +154,7 @@ p {
   background-color: var(--color-black);
   transform: translateX(-101%);
   transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
-  z-index: -1;
+  z-index: 0;
 }
 
 .btn-primary:hover {
@@ -142,6 +163,11 @@ p {
 
 .btn-primary:hover::before {
   transform: translateX(0);
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 1;
 }
 
 .btn-ghost {
@@ -191,7 +217,7 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--color-amber);
-  background-color: rgba(198, 40, 40, 0.04);
+  background-color: rgba(224, 123, 42, 0.04);
 }
 
 label {
@@ -203,7 +229,19 @@ label {
   color: var(--color-muted);
 }
 
-/* Animations */
+/* Word wrapper for clip reveal animation */
+.word-wrapper {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.word-inner {
+  display: inline-block;
+  transform: translateY(110%);
+}
+
+/* Marquee Animation */
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -217,35 +255,71 @@ label {
   animation: marquee 22s linear infinite;
 }
 
+/* Scroll hint animation */
 @keyframes pulse-down {
   0%, 100% {
-    opacity: 0.5;
-    transform: translateY(0);
+    opacity: 0.4;
+    transform: scaleY(1);
   }
   50% {
     opacity: 1;
-    transform: translateY(8px);
+    transform: scaleY(1.3);
   }
 }
 
-.scroll-hint {
+.scroll-hint-line {
   animation: pulse-down 1.6s ease-in-out infinite;
+  transform-origin: top;
 }
 
-@keyframes clip-reveal {
-  from {
-    transform: translateY(110%);
-  }
-  to {
-    transform: translateY(0);
-  }
+/* Grid texture overlay */
+.grid-overlay {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
 }
 
-/* Word wrapper for clip reveal */
-.word-wrapper {
-  overflow: hidden;
-  display: inline-block;
-  line-height: 0.88;
+/* Custom Cursor Styles */
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-amber);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(224, 123, 42, 0.6);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+}
+
+.cursor-ring.expanded {
+  width: 56px;
+  height: 56px;
+  border-color: rgba(224, 123, 42, 1);
+}
+
+/* Hide custom cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
 }
 
 /* No animations when prefers-reduced-motion */
@@ -263,12 +337,17 @@ label {
     animation: none;
   }
 
-  .scroll-hint {
-    animation: none;
-  }
-
   body::before {
     opacity: 0 !important;
+  }
+  
+  body {
+    cursor: auto;
+  }
+  
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
   }
 }
 
