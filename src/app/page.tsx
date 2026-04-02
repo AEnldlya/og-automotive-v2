@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import HeroPRD from '@/components/HeroPRD';
+import HeroAceternity from '@/components/HeroAceternity';
 import HorizontalPhotoScroll from '@/components/HorizontalPhotoScroll';
 import CarDisassembly from '@/components/CarDisassembly';
 import { VideoSectionClient, TextScrambleClient } from '@/components/ClientWrappers';
@@ -10,7 +10,7 @@ import { VideoSectionClient, TextScrambleClient } from '@/components/ClientWrapp
 export default function Home() {
   return (
     <>
-      <HeroPRD />
+      <HeroAceternity />
 
       {/* About Preview */}
       <section id="about" className="relative w-full py-24 lg:py-32 px-8 lg:px-16 bg-[#0a0908]">
