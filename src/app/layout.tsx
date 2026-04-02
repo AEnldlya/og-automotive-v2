@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Barlow_Condensed, Barlow } from "next/font/google";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import CustomCursor from "@/components/CustomCursor";
 import ScrollProgress from "@/components/ScrollProgress";
 import PageTransition from "@/components/PageTransition";
 import "./globals.css";
@@ -43,7 +42,6 @@ export default function RootLayout({
       className={`${bebasNeue.variable} ${barlowCondensed.variable} ${barlow.variable} scroll-smooth`}
     >
       <body className="bg-black text-cream antialiased">
-        <CustomCursor />
         <ScrollProgress />
         <Navigation />
         <PageTransition>

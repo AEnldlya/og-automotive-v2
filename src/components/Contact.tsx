@@ -23,6 +23,8 @@ export default function Contact() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const submitRef = useRef<HTMLButtonElement>(null);
 
   const handleChange = (
@@ -34,33 +36,53 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
 
-    // Simulate form submission
-    // In production, this would connect to FormSpree, EmailJS, or a custom endpoint
-    console.log('Form submitted:', formData);
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    // Show success state
-    if (submitRef.current) {
-      submitRef.current.textContent = 'Request Sent ✓';
-      submitRef.current.style.backgroundColor = 'var(--color-green, #10b981)';
-      setSubmitted(true);
+      const result = await res.json();
 
-      // Reset after 3 seconds
-      setTimeout(() => {
-        if (submitRef.current) {
-          submitRef.current.textContent = 'Send Request';
-          submitRef.current.style.backgroundColor = '';
-          setSubmitted(false);
-        }
-        setFormData({
-          firstName: '',
-          lastName: '',
-          phone: '',
-          vehicle: '',
-          service: 'Oil & Filter',
-          details: '',
-        });
-      }, 3000);
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || 'Failed to send request');
+      }
+
+      // Show success state
+      if (submitRef.current) {
+        submitRef.current.textContent = 'Request Sent';
+        submitRef.current.style.backgroundColor = 'var(--color-green, #10b981)';
+        setSubmitted(true);
+
+        // Reset after 3 seconds
+        setTimeout(() => {
+          if (submitRef.current) {
+            submitRef.current.textContent = 'Send Request';
+            submitRef.current.style.backgroundColor = '';
+            setSubmitted(false);
+          }
+          setFormData({
+            firstName: '',
+            lastName: '',
+            phone: '',
+            vehicle: '',
+            service: 'Oil & Filter',
+            details: '',
+          });
+        }, 3000);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
+      if (submitRef.current) {
+        submitRef.current.textContent = 'Error - Try Again';
+        submitRef.current.style.backgroundColor = 'var(--color-red, #ef4444)';
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -261,14 +283,21 @@ export default function Contact() {
                 />
               </div>
 
+              {/* Error message */}
+              {error && (
+                <div className="px-4 py-3 bg-red-900 bg-opacity-20 border border-red-600 text-red-400 text-sm rounded">
+                  {error}
+                </div>
+              )}
+
               {/* Submit button */}
               <button
                 ref={submitRef}
                 type="submit"
-                disabled={submitted}
+                disabled={submitted || loading}
                 className="w-full btn-primary mt-8"
               >
-                Send Request
+                {loading ? 'Sending...' : 'Send Request'}
               </button>
             </form>
           </div>

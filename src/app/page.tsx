@@ -1,8 +1,9 @@
 import Link from 'next/link';
 
-import Hero from '@/components/Hero';
+import HeroMagic from '@/components/HeroMagic';
 import Marquee from '@/components/Marquee';
 import HorizontalPhotoScroll from '@/components/HorizontalPhotoScroll';
+import CarDisassembly from '@/components/CarDisassembly';
 import { VideoSectionClient, TextScrambleClient } from '@/components/ClientWrappers';
 
 
@@ -10,7 +11,7 @@ import { VideoSectionClient, TextScrambleClient } from '@/components/ClientWrapp
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroMagic />
       <Marquee />
 
       {/* About Preview */}
@@ -99,6 +100,9 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Car Disassembly Animation */}
+      <CarDisassembly />
 
       {/* Video Section */}
       <VideoSectionClient />
